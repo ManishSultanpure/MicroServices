@@ -1,0 +1,33 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/orderdb
+    username: root
+    password: root
+    driverClassName: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+      dialect: org.hibernate.dialect.MySQL8Dialect
+  application:
+    name: ORDER-SERVICE
+  config:
+      import: configserver:http://localhost:9296
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+#  sleuth:
+#      traceId128: true
+#      supportsJoin: false
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    client:
+#      fetch-registry: true
+#      register-with-eureka: true
+#      service-url:
+#        defaultZone: ${EUREKA_SERVER_ADDRESS:http://localost:8761/eureka}
