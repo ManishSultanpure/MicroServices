@@ -9,7 +9,7 @@ spring:
       driverClassName: com.mysql.cj.jdbc.Driver
     jpa:
         hibernate:
-          ddl-auto: create
+          ddl-auto: validate
           dialect: org.hibernate.dialect.MySQL8Dialect
     application:
       name: PRODUCT-SERVICE
