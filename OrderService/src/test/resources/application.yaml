@@ -1,0 +1,56 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:9296
+  datasource:
+    url: jdbc:h2:men:order
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-44426362.okta.com/oauth2/default
+      client:
+        registration:
+          internal-client:
+            provider: okta
+            authorization-grant-type: client_credentials
+            scope: internal
+            client-id: 0oagymj4zfCDPvDrq5d7
+            client-secret: jfyHGFGAIaXENuFEz9KP0mpXK_3QptIrGNj5DMzVQUuvaLSYZJyJBoaQWynYJCO-
+        provider:
+          okta:
+            issuer-url: https://dev-44426362.okta.com/oauth2/default
+  cloud:
+    compatibility-verifier:
+      enabled: false
+resilience4j:
+  circuitbreaker:
+    instances:
+      external:
+        event-consumer-buffer-size: 10
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+        wait-duration-in-open-state: 5s
+        permitted-number-of-calls-in-half-open-state: 3
+        sliding-window-size: 10
+        sliding-window-type: COUNT_BASED
+
+
+
+#  sleuth:
+#      traceId128: true
+#      supportsJoin: false
+#
+#eureka:
+#  instance:
+#    prefer-ip-address: true
+#    client:
+#      fetch-registry: true
+#      register-with-eureka: true
+#      service-url:
+#        defaultZone: ${EUREKA_SERVER_ADDRESS:http://localost:8761/eureka}

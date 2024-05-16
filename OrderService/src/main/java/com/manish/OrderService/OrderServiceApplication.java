@@ -1,5 +1,6 @@
 package com.manish.OrderService;
 
+//import com.manish.OrderService.interceptor.RestTemplateInterceptor;
 import com.manish.OrderService.interceptor.RestTemplateInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
